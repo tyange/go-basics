@@ -12,6 +12,12 @@ type user struct {
 	createdAt time.Time
 }
 
+func (u user) outputUserDetails() {
+	// When using a struct type data passed as a pointer,
+	// there is no need to dereference the pointer with '*' to access its fields.
+	fmt.Println(u.firstName, u.lastName, u.birthDate)
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -26,13 +32,7 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	outputUserDetails(&appUser)
-}
-
-func outputUserDetails(u *user) {
-	// When using a struct type data passed as a pointer,
-	// there is no need to dereference the pointer with '*' to access its fields.
-	fmt.Println(u.firstName, u.lastName, u.birthDate)
+	appUser.outputUserDetails()
 }
 
 func getUserData(promptText string) string {
