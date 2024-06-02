@@ -19,7 +19,7 @@ func (u user) outputUserDetails() {
 }
 
 func (u *user) clearUserName() {
-	// To modify the received argument itself,
+	// To modify the original struct,
 	// need to pass a pointer to the argument.
 	u.firstName = ""
 	u.lastName = ""
