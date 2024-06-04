@@ -7,10 +7,25 @@ import (
 	"strings"
 
 	"example.com/note/note"
+	"example.com/note/todo"
 )
+
+// Go interfaces are used to check if a struct or type implements all the methods defined in the interface.
+// However, it is important to note that a struct can satisfy the interface even if it only implements some of the methods.
+type saver interface {
+	Save() error
+}
 
 func main() {
 	title, content := getNoteData()
+	todoText := getUserInput("Todo text: ")
+
+	todo, err := todo.New(todoText)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	userNote, err := note.New(title, content)
 
@@ -19,16 +34,31 @@ func main() {
 		return
 	}
 
-	userNote.Display()
-
-	err = userNote.Save()
+	todo.Display()
+	err = saveData(todo)
 
 	if err != nil {
-		fmt.Println("Saving the note failed.")
 		return
 	}
 
+	userNote.Display()
+	err = saveData(userNote)
+
+	if err != nil {
+		return
+	}
+}
+
+func saveData(data saver) error {
+	err := data.Save()
+
+	if err != nil {
+		fmt.Println("Saving the note failed.")
+		return err
+	}
+
 	fmt.Println("Saving the note succeeded!")
+	return nil
 }
 
 func getNoteData() (string, string) {
