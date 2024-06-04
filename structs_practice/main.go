@@ -32,6 +32,9 @@ func main() {
 		return
 	}
 
+	// not error!
+	printSomething(todo)
+
 	userNote, err := note.New(title, content)
 
 	if err != nil {
@@ -49,6 +52,17 @@ func main() {
 
 	if err != nil {
 		return
+	}
+}
+
+func printSomething(value interface{}) {
+	switch value.(type) {
+	case int:
+		fmt.Println("Integer:", value)
+	case float64:
+		fmt.Println("Float", value)
+	case string:
+		fmt.Println(value)
 	}
 }
 
