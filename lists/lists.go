@@ -19,7 +19,9 @@ func main() {
 
 	fmt.Println(prices[2])
 
+	// including
 	featuredPrices := prices[1:]
+	// excluding
 	highlightedPrices := featuredPrices[:1]
 	fmt.Println(highlightedPrices)
 }
