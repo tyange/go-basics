@@ -15,6 +15,10 @@ func main() {
 	// 그러므로 원래의 prices 배열을 재선언해주어야 함.
 	prices = append(prices, 5.99)
 	fmt.Println(prices)
+
+	discountPrices := []float64{101.99, 80.99, 20.59}
+	prices = append(prices, discountPrices...)
+	fmt.Println(prices)
 }
 
 // func main() {
