@@ -12,6 +12,8 @@ func main() {
 	// slice type, slots, allocated spaces
 	userNames := make([]string, 2, 5)
 
+	userNames[0] = "Julie"
+
 	userNames = append(userNames, "Max")
 	userNames = append(userNames, "Manuel")
 
@@ -24,4 +26,14 @@ func main() {
 	counseRatings["angular"] = 4.5
 
 	counseRatings.output()
+
+	for index, value := range userNames {
+		fmt.Println(index)
+		fmt.Println(value)
+	}
+
+	for index, value := range counseRatings {
+		fmt.Println(index)
+		fmt.Println(value)
+	}
 }
