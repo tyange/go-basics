@@ -11,7 +11,7 @@ func main() {
 	server := gin.Default()
 
 	server.GET("/events", getEvents)
-	server.POST("/events")
+	server.POST("/events", createEvent)
 
 	server.Run(":8080")
 }
@@ -32,5 +32,8 @@ func createEvent(context *gin.Context) {
 
 	event.ID = 1
 	event.UserID = 1
+
+	event.Save()
+
 	context.JSON(http.StatusCreated, gin.H{"message": "event created", "event": event})
 }
